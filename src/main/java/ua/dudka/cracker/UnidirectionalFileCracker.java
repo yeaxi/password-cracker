@@ -6,14 +6,14 @@ import ua.dudka.entity.Entity;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class UnilateralFileCracker implements FileCracker {
+public class UnidirectionalFileCracker implements FileCracker {
     private char[] allowableChars;
     private ExecutorService executorService;
     private Entity entity;
 
     private String filename;
 
-    public UnilateralFileCracker() {
+    public UnidirectionalFileCracker() {
         this.executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors(), r -> {
             Thread thread = new Thread(r);
             thread.setDaemon(true);

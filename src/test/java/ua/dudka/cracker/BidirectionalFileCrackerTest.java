@@ -11,16 +11,15 @@ import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 
-public class UnilateralFileCrackerTest extends AbstractFileCrackerTest {
+public class BidirectionalFileCrackerTest extends AbstractFileCrackerTest {
 
     @Rule
     public TestName name = new TestName();
-    private final FileCracker fileCracker = new UnilateralFileCracker();
-
+    private final FileCracker fileCracker = new BidirectionalFileCracker();
 
     @Test
     public void crackingFileWithPassLengthEq2() throws Exception {
-        String password = "ff";
+        String password = "xp";
         Entity expectedEntity = encodeTestEntity(password);
 
         long before = new Date().getTime();
@@ -31,16 +30,16 @@ public class UnilateralFileCrackerTest extends AbstractFileCrackerTest {
         showSpentTime(name.getMethodName(), before, after);
     }
 
-
     private Entity encodeTestEntity(String password) {
         Entity testEntity = new Entity(MESSAGE, password);
         filename = FileEncoder.encode(testEntity);
         return testEntity;
     }
 
+
     @Test
     public void crackingFileWithPassLengthEq3() throws Exception {
-        String password = "z0x";
+        String password = "v0e";
         Entity expectedEntity = encodeTestEntity(password);
 
         long before = new Date().getTime();
@@ -53,7 +52,20 @@ public class UnilateralFileCrackerTest extends AbstractFileCrackerTest {
 
     @Test
     public void crackingFileWithFirstAlphabeticCharsLengthEq3() throws Exception {
-        String password = "cda";
+        String password = "abc";
+        Entity expectedEntity = encodeTestEntity(password);
+
+        long before = new Date().getTime();
+        Entity crackedEntity = fileCracker.crack(filename);
+        long after = new Date().getTime();
+
+        assertEquals(expectedEntity, crackedEntity);
+        showSpentTime(name.getMethodName(), before, after);
+    }
+
+    @Test
+    public void crackingFileWithLastAlphabeticCharsLengthEq3() throws Exception {
+        String password = "xyz";
         Entity expectedEntity = encodeTestEntity(password);
 
         long before = new Date().getTime();
@@ -66,7 +78,7 @@ public class UnilateralFileCrackerTest extends AbstractFileCrackerTest {
 
     @Test
     public void crackingFileWithPassLengthEq4() throws Exception {
-        String password = "9fpa";
+        String password = "9z1b";
         Entity expectedEntity = encodeTestEntity(password);
 
         long before = new Date().getTime();
@@ -79,7 +91,7 @@ public class UnilateralFileCrackerTest extends AbstractFileCrackerTest {
 
     @Test
     public void crackingFileWithPassContainsOnlyNumbersLengthEq4() throws Exception {
-        String password = "1998";
+        String password = "2016";
         Entity expectedEntity = encodeTestEntity(password);
 
         long before = new Date().getTime();
@@ -90,10 +102,10 @@ public class UnilateralFileCrackerTest extends AbstractFileCrackerTest {
         showSpentTime(name.getMethodName(), before, after);
     }
 
-    @Ignore("If you want to check the performance of your computer - simply run the test")
+    @Ignore("If you wanna check the performance of your computer - simply run the test\n")
     @Test
     public void crackingFileWithPassLengthEq5() throws Exception {
-        String password = "zfx96";
+        String password = "1h0r9";
         Entity expectedEntity = encodeTestEntity(password);
 
         long before = new Date().getTime();

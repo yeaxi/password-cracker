@@ -5,14 +5,15 @@ import ua.dudka.entity.Entity;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
-public class BilateralFileCracker implements FileCracker {
+public class BidirectionalFileCracker implements FileCracker {
     private char[] allowableChars;
     private ExecutorService executorService;
     private Entity entity;
     private String filename;
 
-    public BilateralFileCracker() {
+    public BidirectionalFileCracker() {
         this.executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
         this.entity = new Entity("", "");
         allowableChars = "abcdefghijklmnopqrstuvwxyz0123456789".toCharArray();
@@ -33,7 +34,7 @@ public class BilateralFileCracker implements FileCracker {
     private void waitForAnswerAndShutdown() {
         while (entity.getMessage().length() < 1) {
             try {
-                Thread.currentThread().sleep(500);
+                TimeUnit.MILLISECONDS.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
