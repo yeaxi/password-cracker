@@ -1,2 +1,4 @@
 The app is storing data in files encoded with AES where key is encoded by MD5;
-The Project already has a mini-feature - brute force passwords in parallel
+The main feature is brute forcing passwords in parallel;
+
+![alt tag](https://travis-ci.org/yeaxi/crypto.svg?branch=master)

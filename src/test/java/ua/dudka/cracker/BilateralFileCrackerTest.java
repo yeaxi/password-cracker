@@ -1,7 +1,9 @@
 package ua.dudka.cracker;
 
 import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 import ua.dudka.coder.FileEncoder;
 import ua.dudka.entity.Entity;
 
@@ -11,6 +13,8 @@ import static org.junit.Assert.assertEquals;
 
 public class BilateralFileCrackerTest extends AbstractFileCrackerTest {
 
+    @Rule
+    public TestName name = new TestName();
     private final FileCracker fileCracker = new BilateralFileCracker();
 
     @Test
@@ -23,7 +27,7 @@ public class BilateralFileCrackerTest extends AbstractFileCrackerTest {
         long after = new Date().getTime();
 
         assertEquals(expectedEntity, crackedEntity);
-        showSpentTime(before, after);
+        showSpentTime(name.getMethodName(), before, after);
     }
 
     private Entity encodeTestEntity(String password) {
@@ -43,7 +47,7 @@ public class BilateralFileCrackerTest extends AbstractFileCrackerTest {
         long after = new Date().getTime();
 
         assertEquals(expectedEntity, crackedEntity);
-        showSpentTime(before, after);
+        showSpentTime(name.getMethodName(), before, after);
     }
 
     @Test
@@ -56,7 +60,7 @@ public class BilateralFileCrackerTest extends AbstractFileCrackerTest {
         long after = new Date().getTime();
 
         assertEquals(expectedEntity, crackedEntity);
-        showSpentTime(before, after);
+        showSpentTime(name.getMethodName(), before, after);
     }
 
     @Test
@@ -69,7 +73,7 @@ public class BilateralFileCrackerTest extends AbstractFileCrackerTest {
         long after = new Date().getTime();
 
         assertEquals(expectedEntity, crackedEntity);
-        showSpentTime(before, after);
+        showSpentTime(name.getMethodName(), before, after);
     }
 
     @Test
@@ -82,7 +86,7 @@ public class BilateralFileCrackerTest extends AbstractFileCrackerTest {
         long after = new Date().getTime();
 
         assertEquals(expectedEntity, crackedEntity);
-        showSpentTime(before, after);
+        showSpentTime(name.getMethodName(), before, after);
     }
 
     @Test
@@ -95,10 +99,10 @@ public class BilateralFileCrackerTest extends AbstractFileCrackerTest {
         long after = new Date().getTime();
 
         assertEquals(expectedEntity, crackedEntity);
-        showSpentTime(before, after);
+        showSpentTime(name.getMethodName(), before, after);
     }
 
-    @Ignore("If you wanna check the performance of your computer - simply run the test")
+    @Ignore("If you wanna check the performance of your computer - simply run the test\n")
     @Test
     public void crackingFileWithPassLengthEq5() throws Exception {
         String password = "1h0r9";
@@ -109,7 +113,7 @@ public class BilateralFileCrackerTest extends AbstractFileCrackerTest {
         long after = new Date().getTime();
 
         assertEquals(expectedEntity, crackedEntity);
-        showSpentTime(before, after);
+        showSpentTime(name.getMethodName(), before, after);
     }
 
 }

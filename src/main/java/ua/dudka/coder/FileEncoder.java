@@ -22,6 +22,16 @@ import java.util.zip.ZipOutputStream;
 public class FileEncoder {
 
     private static final String AES_CIPHER = "AES";
+    private static final String DIRECTORY_NAME = "data/";
+
+    static {
+        if (Files.notExists(Paths.get(DIRECTORY_NAME))) {
+            try {
+                Files.createDirectory(Paths.get(DIRECTORY_NAME));
+            } catch (IOException ignored) {
+            }
+        }
+    }
 
     public static String encode(Entity entity) {
         try {
@@ -43,7 +53,7 @@ public class FileEncoder {
     }
 
     private static String generateFilename() {
-        String filename = UUID.randomUUID() + "_" + UUID.randomUUID();
+        String filename = DIRECTORY_NAME + UUID.randomUUID() + "_" + UUID.randomUUID();
         return filename.substring(0, new Random().nextInt(filename.length()));
     }
 
@@ -69,7 +79,6 @@ public class FileEncoder {
         } catch (FileNotFoundException e) {
             throw new FileNotFoundRuntimeException();
         } catch (Exception e) {
-            e.printStackTrace();
             return "";
         }
 
@@ -102,6 +111,6 @@ public class FileEncoder {
 
     private static Key getKey(String password) throws NoSuchAlgorithmException {
         byte[] pass = MessageDigest.getInstance("MD5").digest(password.getBytes());
-        return new SecretKeySpec(pass, "AES");
+        return new SecretKeySpec(pass, AES_CIPHER);
     }
 }
